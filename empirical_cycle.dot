@@ -1,13 +1,19 @@
 digraph {
-  observation;
-  induction;
-  deduction;
-  testing;
-  evaluation;
+  observation [label="Old knowledge and old data"];
+  subgraph cluster_discovery {
+    label="Discovery";
+    induction [label="New hypothesis"];
+    deduction [label="New prediction"];
+  }
+  subgraph cluster_justification {
+    label="Justification";
+    testing [label="Test on new data"];
+    evaluation;
+  }
 
-  observation -> induction;
-  induction -> deduction;
-  deduction -> testing;
-  testing -> evaluation;
-  evaluation -> observation; 
+  observation -> induction [label="Speculate & explore"];
+  induction -> deduction [label="Deduce"];
+  deduction -> testing [label="Design new experiment"];
+  testing -> evaluation [label="Statistical analysis"];
+  evaluation -> observation [label="Knowledge accumulation"]; 
 }
